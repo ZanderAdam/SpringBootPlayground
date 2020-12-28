@@ -1,4 +1,4 @@
-package com.springbootplayground.order.service.order;
+package com.springbootplayground.order.fulfillment.service.order;
 
 import java.time.LocalDateTime;
 import java.util.List;

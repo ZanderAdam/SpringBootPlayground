@@ -17,6 +17,7 @@
 
   <modules>
     <module>order-service</module>
+    <module>order-fulfillment-service</module>
   </modules>
 
   <dependencyManagement>

@@ -1,0 +1,9 @@
+apiVersion: skaffold/v2beta5
+kind: Config
+build:
+  local:
+    push: false
+  artifacts:
+  - image: order-fulfillment-service
+    context: .
+    jib: {}

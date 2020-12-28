@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: order-service
+  name: order-fulfillment-service
 spec:
   ports:
     - port: 8080
@@ -10,27 +10,27 @@ spec:
       name: debug
   type: LoadBalancer
   selector:
-    app: order-service
+    app: order-fulfillment-service
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: order-service
+  name: order-fulfillment-service
 spec:
   selector:
     matchLabels:
-      app: order-service
+      app: order-fulfillment-service
   template:
     metadata:
       labels:
-        app: order-service
+        app: order-fulfillment-service
     spec:
       containers:
-        - name: order-service
+        - name: order-fulfillment-service
           env:
             - name: JAVA_TOOL_OPTIONS
               value: -agentlib:jdwp=transport=dt_socket,server=y,address=5005,suspend=n,quiet=y
-          image: order-service
+          image: order-fulfillment-service
           ports:
             - containerPort: 8080
             - containerPort: 5005

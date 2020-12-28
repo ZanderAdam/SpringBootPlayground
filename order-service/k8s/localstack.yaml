@@ -35,7 +35,7 @@ spec:
       containers:
         - env:
             - name: SERVICES
-              value: "kinesis"
+              value: "kinesis,DynamoDB,CloudWatch"
             - name: AWS_CBOR_DISABLE
               value: "true"
             - name: aws.cborEnabled

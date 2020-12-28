@@ -1,6 +1,6 @@
-package com.springbootplayground.order.service.order;
+package com.springbootplayground.order.fulfillment.service.order;
 
-import com.springbootplayground.order.service.configuration.KinesisConfigProperties;
+import com.springbootplayground.order.fulfillment.service.configuration.KinesisConfigProperties;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
-import software.amazon.awssdk.core.SdkSystemSetting;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.kinesis.KinesisClient;
 import software.amazon.awssdk.services.kinesis.model.CreateStreamRequest;
@@ -36,7 +35,6 @@ import static org.awaitility.Awaitility.await;
 @Testcontainers
 public class OrderServiceIT {
   static {
-    System.setProperty(SdkSystemSetting.CBOR_ENABLED.property(), "false");
   }
 
   private KinesisClient kinesisClient;

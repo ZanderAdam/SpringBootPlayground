@@ -1,4 +1,4 @@
-package com.springbootplayground.order.service.configuration;
+package com.springbootplayground.order.fulfillment.service.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "aws")
 public class KinesisConfigProperties {
   private String streamName;
-  private String accessKey;
+  private String accessKeyId;
   private String secretKey;
   private String endpoint;
 
@@ -19,12 +19,12 @@ public class KinesisConfigProperties {
     this.streamName = streamName;
   }
 
-  public String getAccessKey() {
-    return accessKey;
+  public String getAccessKeyId() {
+    return accessKeyId;
   }
 
-  public void setAccessKey(String accessKey) {
-    this.accessKey = accessKey;
+  public void setAccessKeyId(String accessKeyId) {
+    this.accessKeyId = accessKeyId;
   }
 
   public String getSecretKey() {

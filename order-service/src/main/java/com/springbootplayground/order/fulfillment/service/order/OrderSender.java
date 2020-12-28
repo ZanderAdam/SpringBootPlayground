@@ -1,15 +1,13 @@
-package com.springbootplayground.order.service.order;
+package com.springbootplayground.order.fulfillment.service.order;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springbootplayground.order.service.configuration.KinesisConfigProperties;
+import com.springbootplayground.order.fulfillment.service.configuration.KinesisConfigProperties;
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
-import software.amazon.awssdk.auth.credentials.AwsCredentials;
-import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
-import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.core.SdkBytes;
+import software.amazon.awssdk.core.SdkSystemSetting;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.kinesis.KinesisClient;
 import software.amazon.awssdk.services.kinesis.model.PutRecordRequest;
@@ -24,9 +22,11 @@ public class OrderSender {
   private final String streamName;
 
   public OrderSender(KinesisConfigProperties kinesisConfigProperties) throws URISyntaxException {
+    System.setProperty(SdkSystemSetting.CBOR_ENABLED.property(), "false");
+
     this.streamName = kinesisConfigProperties.getStreamName();
 
-    AwsBasicCredentials cred = AwsBasicCredentials.create(kinesisConfigProperties.getAccessKey(),
+    AwsBasicCredentials cred = AwsBasicCredentials.create(kinesisConfigProperties.getAccessKeyId(),
       kinesisConfigProperties.getSecretKey());
 
     kinesisClient = KinesisClient.builder()
